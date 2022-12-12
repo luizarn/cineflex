@@ -1,7 +1,8 @@
 import Logo from "../Logo";
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
 
-export default function SucessScreen(){
+export default function SucessScreen({clicked, clientName, clientCpf}){
     return(
         <>
         <Logo/>
@@ -9,28 +10,30 @@ export default function SucessScreen(){
                 <p>Pedido feito</p>
                 <p>com sucesso!</p>
         <ContainerInfos>
-        <FinalInfos>
+        <FinalInfos data-test="movie-info">
             <h1>Filme e Sessão</h1>
             <h2>Enola Holmes</h2>
             <h2>24/06/2021  15:00</h2>
         </FinalInfos>
 
-        <FinalInfos>
+        <FinalInfos data-test="seats-info">
             <h1>Ingressos</h1>
-            <h2>Enola Holmes</h2>
-            <h2>24/06/2021  15:00</h2>
+            <h2>Assento{clicked}</h2>
+            
         </FinalInfos>
 
-        <FinalInfos>
+        <FinalInfos data-test="client-info"> 
             <h1>Comprador</h1>
-            <h2>Nome: João da Silva Sauro</h2>
-            <h2>CPF: 123.456.789-10</h2>
+            <h2>Nome: {clientName}</h2>
+            <h2>CPF: {clientCpf}</h2>
         </FinalInfos>
         </ContainerInfos>
 
-        <ButtonChoice>
+        <Link to="/">
+        <ButtonChoice data-test="go-home-btn">
                 Voltar para Home
             </ButtonChoice>
+            </Link>
                 </Container>
         </>
       

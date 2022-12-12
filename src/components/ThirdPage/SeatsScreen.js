@@ -11,6 +11,8 @@ export default function SeatsCreen(){
 
 const {idSessao} = useParams()
 const [sessionSeat, setSessionSeat] = useState(undefined)
+const [clicked, setClicked] = useState([]);
+// const [ids, setIds] = useState("")
 
 
 useEffect(() => {
@@ -32,7 +34,7 @@ if (sessionSeat === undefined) {
         <Container>
                 <p>Selecione o(s) asentos(os)</p>
                 <SeatsContainer>
-        {sessionSeat.seats.map ((s) => ( <Seats key={s.id} number={s.name} status={s.isAvailable} seat={s}/>))}
+        {sessionSeat.seats.map ((s) => ( <Seats key={s.id} number={s.name} status={s.isAvailable} clicked={clicked} setClicked={setClicked}/>))}
                 </SeatsContainer>
             
             <LegendSeat>
@@ -48,10 +50,11 @@ if (sessionSeat === undefined) {
 
         </Container>
 
-            <InformationsClient/>
-            <ButtonChoice>
-                Reservar assento(s)
-            </ButtonChoice>
+            <InformationsClient
+            clicked={clicked}
+            />
+
+            
             <Footer
            image={sessionSeat.movie.posterURL}
             title={sessionSeat.movie.title}
@@ -122,6 +125,7 @@ justify-content:space-between;
 margin:auto;
 width: 275px;
 margin-top: 10px;
+margin-bottom:42px;
 h1{
     font-weight: 400;
     font-size: 13px;
@@ -129,22 +133,4 @@ h1{
     letter-spacing: -0.013em;
     color: #4E5A65;
 }
-`
-const ButtonChoice = styled.button`
-    width: 225px;
-    height: 42px;
-    background-color: #E8833A;
-    border-radius: 3px;
-    border: none;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 21px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    letter-spacing: 0.04em;
-    color: #FFFFFF;
-    justify-content:center;
-    margin:auto;
-    margin-top:47px;
 `

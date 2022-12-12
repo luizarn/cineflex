@@ -1,20 +1,21 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-export default function Seats({number, status, s}){
+export default function Seats({number, status, clicked, setClicked}){
 
-const [ids, setIds] = useState([])
 const [color, setColor] = useState("#C3CFD9")
 
 
 
-function handeleSeat(){
+function handeleSeat(number){
     setColor("#1AAE9E")
 if(color === "#1AAE9E"){
     setColor("#C3CFD9")
 }
 
+const newArray = ([...clicked, number])
+setClicked(newArray)
+console.log(newArray)}
 
-}
 
 
 
@@ -26,7 +27,7 @@ if(color === "#1AAE9E"){
         {status? (
         <NumberSeat  
         color={color}
-        onClick={handeleSeat}> 
+        onClick={() => handeleSeat(number)}> 
            {number} 
         </NumberSeat> 
         ) : (

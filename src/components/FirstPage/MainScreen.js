@@ -33,8 +33,8 @@ if (movies === undefined) {
                     {movies.map((m) => (
                         
                         
-                        <Link to={`/sessoes/${m.id}`}>  
-                        <Movie key={m.posterURL}
+                        <Link to={`/sessoes/${m.id}`} key={m.id}>  
+                        <Movie 
                         image={m.posterURL} description={m.title}/>
                         </Link>
                 

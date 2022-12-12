@@ -39,9 +39,9 @@ const [chosenMovie, setChosenMovie] = useState(undefined)
   <>
            <p>{m.weekday} - {m.date}</p>
            <TimeContainer>
-            {m.showtimes.map((time)=> (
+            {m.showtimes.map((time)=> ( 
                   <Link to={`/assentos/${time.id}`} key={time.id}>
- <StyleTime>{time.name}</StyleTime>
+ <StyleTime key={time.id}> {time.name} </StyleTime>
  </Link>
             ))}
  </TimeContainer> 

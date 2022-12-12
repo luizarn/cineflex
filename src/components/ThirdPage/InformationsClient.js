@@ -1,23 +1,58 @@
 
+import { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+export default function InformationsClient({clicked, clientName, clientCpf, setClientName, setClientCpf}){
 
-export default function InformationsClient(){
+
+const navigate = useNavigate()
+
+function addInfClient(e){
+e.preventDefault()
+const picture = {ids: clicked, name:clientName, cpf:clientCpf}
+const url_post = "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many"
+const promise = axios.post(url_post, picture)
+
+promise.then(res => {
+navigate("/sucesso")
+console.log(res.data)
+})
+}
+
     return(
         <>
+        <form onSubmit={addInfClient}>
         <ContainerClient>
-            <h2>Nome do comprador:</h2>
+            <Title forHtml="name">Nome do comprador:</Title>
             <input 
+            id="name"
             type="text"
             placeholder="Digite seu nome..."
-            />
-
-
-            <h2>CPF do comprador:</h2>
-            <input 
-            type="text"
-            placeholder="Digite seu CPF..."
+            value={clientName}
+            onChange={e => setClientName(e.target.value)}
+            required
             />
         </ContainerClient>
+
+        <ContainerClient>
+            <Title forHtml="cpf">CPF do comprador:</Title>
+            <input 
+            placeholder="Digite seu CPF..."
+            id="cpf"
+            type="text"
+            maxLength={11} 
+            minLength={11}
+            value={clientCpf}
+            onChange={e => setClientCpf(e.target.value)}
+            required
+            />
+        </ContainerClient>
+        <ButtonChoice type="submit">
+                Reservar assento(s)
+            </ButtonChoice>
+        </form>
+
         
         </>
     )
@@ -27,14 +62,7 @@ const ContainerClient = styled.div`
 display: flex;
 flex-direction:column;
 justify-content:flex-start;
-margin-top:42px;
 margin-left:24px;
-h2{
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 21px;
-    color: #293845;
-}
 input{
     width: 327px;
     height: 51px;
@@ -54,4 +82,31 @@ input{
     }
 }
 
+`
+
+const Title = styled.label`
+
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    color: #293845;
+`
+
+const ButtonChoice = styled.button`
+    width: 225px;
+    height: 42px;
+    background-color: #E8833A;
+    border-radius: 3px;
+    border: none;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+    justify-content:center;
+    margin:auto;
+    margin-top:47px;
 `
