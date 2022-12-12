@@ -22,7 +22,7 @@ if (movies === undefined) {
     return <div>Carregando...</div>
   }
 
-  console.log(movies) 
+
 
     return (
         <>

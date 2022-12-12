@@ -12,6 +12,7 @@ export default function SeatsCreen(){
 const {idSessao} = useParams()
 const [sessionSeat, setSessionSeat] = useState(undefined)
 
+
 useEffect(() => {
     const URL = `https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${idSessao}/seats`
     const promise = axios.get(URL)
@@ -23,16 +24,7 @@ useEffect(() => {
 if (sessionSeat === undefined) {
     return <div>Carregando...</div>
   }
-    // let arrayNumbers = []
 
-
-    // function numberSeats(){
-    //     for (let i = 1; i < 51; i++){
-    //         arrayNumbers.push(i)
-    //         console.log(arrayNumbers)
-    //     }
-    // }
-    //     numberSeats()
 
     return(
         <>
@@ -40,7 +32,7 @@ if (sessionSeat === undefined) {
         <Container>
                 <p>Selecione o(s) asentos(os)</p>
                 <SeatsContainer>
-        {sessionSeat.seats.map ((s) => ( <Seats key={s.id} number={s.name} />))}
+        {sessionSeat.seats.map ((s) => ( <Seats key={s.id} number={s.name} status={s.isAvailable} seat={s}/>))}
                 </SeatsContainer>
             
             <LegendSeat>

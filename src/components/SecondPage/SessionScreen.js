@@ -24,7 +24,6 @@ const [chosenMovie, setChosenMovie] = useState(undefined)
         return <div>Carregando...</div>
       }
     
-      console.log(chosenMovie) 
 
 
 
