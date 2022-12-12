@@ -20,7 +20,7 @@ const [clicked, setClicked] = useState([]);
       <Routes>
         <Route path="/" element={<MainScreen/>} />
         <Route path="/sessoes/:idFilme" element={<SessionScreen/>}/>
-        <Route path="/assentos/:idSessao" element={<SeatsCreen/>}c lientName={clientName} clientCpf={clientCpf} clickec={clicked} setClicked={setClicked} setClientCpf={setClientCpf} setClientName={setClientName} />
+        <Route path="/assentos/:idSessao" element={<SeatsCreen/>} clientName={clientName} clientCpf={clientCpf} clickec={clicked} setClicked={setClicked} setClientCpf={setClientCpf} setClientName={setClientName} />
         <Route path="/sucesso" element={<SucessScreen/>} clientName={clientName} clientCpf={clientCpf} clickec={clicked}/>
       </Routes>
     </BrowserRouter>

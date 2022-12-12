@@ -32,19 +32,22 @@ const [chosenMovie, setChosenMovie] = useState(undefined)
         <Logo/>
         <Container>
         <p>Selecione o horário</p>
-        <SessionContainer data-test="movie-day">
+        <SessionContainer>
 
-
+      
            {chosenMovie.days.map((m) => (
-  <>
+  <>        
+           <span data-test="movie-day">
            <p>{m.weekday} - {m.date}</p>
            <TimeContainer>
             {m.showtimes.map((time)=> ( 
                   <Link to={`/assentos/${time.id}`} key={time.id}>
  <StyleTime data-test="showtime" key={time.id}> {time.name} </StyleTime>
  </Link>
+
             ))}
  </TimeContainer> 
+ </span>
  </>
  ))}
 
@@ -86,6 +89,12 @@ p{
     line-height: 23px;
     margin:0;
 
+}
+span{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    flex-direction:column;   
 }
 `
 const StyleTime = styled.div`
