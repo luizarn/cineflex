@@ -32,7 +32,7 @@ const [chosenMovie, setChosenMovie] = useState(undefined)
         <Logo/>
         <Container>
         <p>Selecione o horário</p>
-        <SessionContainer>
+        <SessionContainer data-test="movie-day">
 
 
            {chosenMovie.days.map((m) => (
@@ -41,7 +41,7 @@ const [chosenMovie, setChosenMovie] = useState(undefined)
            <TimeContainer>
             {m.showtimes.map((time)=> ( 
                   <Link to={`/assentos/${time.id}`} key={time.id}>
- <StyleTime key={time.id}> {time.name} </StyleTime>
+ <StyleTime data-test="showtime" key={time.id}> {time.name} </StyleTime>
  </Link>
             ))}
  </TimeContainer> 
@@ -51,6 +51,7 @@ const [chosenMovie, setChosenMovie] = useState(undefined)
         </SessionContainer>
         </Container>
         <Footer
+        data-test="footer"
         image={chosenMovie.posterURL}
         title={chosenMovie.title}
         />

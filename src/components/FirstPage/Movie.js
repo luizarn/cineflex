@@ -3,7 +3,9 @@
 
 export default function Movie({image, description}){
     return(
-        <img src={image} alt={description} />
+        <div>
+        <img src={image} alt={description} data-test="movie"/>
+        </div>
     )
 }
 
