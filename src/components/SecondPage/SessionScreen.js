@@ -54,7 +54,6 @@ const [chosenMovie, setChosenMovie] = useState(undefined)
         </SessionContainer>
         </Container>
         <Footer
-        data-test="footer"
         image={chosenMovie.posterURL}
         title={chosenMovie.title}
         />
