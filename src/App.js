@@ -3,18 +3,21 @@ import SucessScreen from "./components/FourthPage/SucessScreen";
 import SessionScreen from "./components/SecondPage/SessionScreen";
 import SeatsCreen from "./components/ThirdPage/SeatsScreen";
 import GlobalStyle from "./styles/GlobalStyle";
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 
-function App() {
+export default function App() {
   return (
-    <>
-    <GlobalStyle/>
-{/* <MainScreen/> */}
-{/* <SessionScreen/> */}
-{/* <SeatsCreen/> */}
-<SucessScreen/>
-</>
-  );
+    <BrowserRouter>
+      <GlobalStyle/>
+      <Routes>
+        <Route path="/" element={<MainScreen/>} />
+        <Route path="/sessoes/:idFilme" element={<SessionScreen/>}/>
+        <Route path="/assentos/:idSessao" element={<SeatsCreen/>}/>
+        {/* <Route path="/" element={<SucessScreen/>}/> */}
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+

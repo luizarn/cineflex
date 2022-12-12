@@ -1,9 +1,9 @@
 
 
 
-export default function Movie(){
+export default function Movie({image, description}){
     return(
-        <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg" alt="movie" />
+        <img src={image} alt={description} />
     )
 }
 

@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-export default function Footer() {
+export default function Footer({image, title, day, time}) {
     return (
         <StyleFooter>
             <span>
-                <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg" alt="movie" />
+                <img src={image} alt={title} />
             </span>
             <InformationsMovie>
-           <h1> Enola Holmes</h1>
-            <h1>Quinta-feira - 15:00</h1>
+           <h1> {title}</h1>
+            <h1>{day} - {time}</h1> 
             </InformationsMovie>
         </StyleFooter>
     )

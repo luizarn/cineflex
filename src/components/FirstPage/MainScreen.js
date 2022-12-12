@@ -1,22 +1,45 @@
 import Logo from "../Logo";
 import Movie from "./Movie";
 import styled from 'styled-components';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
 export default function MainScreen() {
+
+const {idFilme} = useParams()
+const [movies, setMovies] = useState(undefined)
+
+useEffect(() => {
+    const URL = "https://mock-api.driven.com.br/api/v8/cineflex/movies"
+    const promise = axios.get(URL)
+    promise.then(res => setMovies(res.data))     
+
+    promise.catch(err => console.log(err.response.data)) 
+}, [])
+
+if (movies === undefined) {
+    return <div>Carregando...</div>
+  }
+
+  console.log(movies) 
+
     return (
         <>
             <Logo />
             <Container>
                 <p>Selecione o filme</p>
                 <MoviesContainer>
-                <Movie />
-                <Movie />
-                <Movie />
-                <Movie />
-                <Movie />
-                <Movie />
-                <Movie />
-                <Movie />
+                    {movies.map((m) => (
+                        
+                        
+                        <Link to={`/sessoes/${m.id}`}>  
+                        <Movie key={m.posterURL}
+                        image={m.posterURL} description={m.title}/>
+                        </Link>
+                
+                    ))}
+            
                 </MoviesContainer>
             </Container>
         </>

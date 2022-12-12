@@ -2,20 +2,59 @@ import Logo from "../Logo";
 import styled from 'styled-components';
 
 import Footer from "../Footer";
-import Session from "./Session";
 
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
 export default function SessionScreen(){
+
+const {idFilme} = useParams()
+const [chosenMovie, setChosenMovie] = useState(undefined)
+    
+    useEffect(() => {
+        const URL = `https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`
+        const promise = axios.get(URL)
+        promise.then(res => setChosenMovie(res.data))     
+    
+        promise.catch(err => console.log(err.response.data)) 
+    }, [])
+
+    if (chosenMovie === undefined) {
+        return <div>Carregando...</div>
+      }
+    
+      console.log(chosenMovie) 
+
+
+
     return(
         <>
         <Logo/>
         <Container>
         <p>Selecione o horário</p>
         <SessionContainer>
-            <Session/>
+
+
+           {chosenMovie.days.map((m) => (
+  <>
+           <p>{m.weekday} - {m.date}</p>
+           <TimeContainer>
+            {m.showtimes.map((time)=> (
+                  <Link to={`/assentos/${time.id}`} key={time.id}>
+ <StyleTime>{time.name}</StyleTime>
+ </Link>
+            ))}
+ </TimeContainer> 
+ </>
+ ))}
+
         </SessionContainer>
         </Container>
-        <Footer/>
+        <Footer
+        image={chosenMovie.posterURL}
+        title={chosenMovie.title}
+        />
         </>
     )
 }
@@ -48,4 +87,28 @@ p{
     margin:0;
 
 }
+`
+const StyleTime = styled.div`
+width: 83px;
+height: 43px;
+background-color: #E8833A;
+border-radius: 3px;
+font-weight: 400;
+font-size: 18px;
+line-height: 21px;
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.02em;
+justify-content:center;
+color: #FFFFFF;
+margin-bottom: 23px;
+margin-top: 23px;
+margin-right: 8px;
+`
+
+const TimeContainer = styled.div`
+width: 375px;
+display: flex;
+flex-wrap: wrap;
 `

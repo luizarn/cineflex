@@ -3,18 +3,36 @@ import styled from 'styled-components';
 import Footer from "../Footer";
 import Logo from "../Logo";
 import InformationsClient from "./InformationsClient";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
 export default function SeatsCreen(){
-    let arrayNumbers = []
+
+const {idSessao} = useParams()
+const [sessionSeat, setSessionSeat] = useState(undefined)
+
+useEffect(() => {
+    const URL = `https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${idSessao}/seats`
+    const promise = axios.get(URL)
+    promise.then(res => setSessionSeat(res.data))     
+
+    promise.catch(err => console.log(err.response.data)) 
+}, [])
+
+if (sessionSeat === undefined) {
+    return <div>Carregando...</div>
+  }
+    // let arrayNumbers = []
 
 
-    function numberSeats(){
-        for (let i = 1; i < 51; i++){
-            arrayNumbers.push(i)
-            console.log(arrayNumbers)
-        }
-    }
-        numberSeats()
+    // function numberSeats(){
+    //     for (let i = 1; i < 51; i++){
+    //         arrayNumbers.push(i)
+    //         console.log(arrayNumbers)
+    //     }
+    // }
+    //     numberSeats()
 
     return(
         <>
@@ -22,7 +40,7 @@ export default function SeatsCreen(){
         <Container>
                 <p>Selecione o(s) asentos(os)</p>
                 <SeatsContainer>
-        {arrayNumbers.map ((s) => ( <Seats key={s} number={s} />))}
+        {sessionSeat.seats.map ((s) => ( <Seats key={s.id} number={s.name} />))}
                 </SeatsContainer>
             
             <LegendSeat>
@@ -42,7 +60,12 @@ export default function SeatsCreen(){
             <ButtonChoice>
                 Reservar assento(s)
             </ButtonChoice>
-            <Footer/>
+            <Footer
+           image={sessionSeat.movie.posterURL}
+            title={sessionSeat.movie.title}
+            day={sessionSeat.day.weekday}
+            time={sessionSeat.name}
+            />
             </>
     )
 }
@@ -56,7 +79,7 @@ text-align: center;
 margin: auto;
     p{
         margin-top: 43px;
-        margin-bottom: 43px;
+        margin-bottom:18px;
         font-weight: 400;
         font-size: 24px;
         line-height: 28px;  
@@ -71,7 +94,7 @@ justify-content: space-around;
 align-items: center;
 margin-left:24px;
 margin-right:24px;
-margin-bottom: 24px;
+margin-bottom: 18px;
 `
 
 const LegendSeat = styled.div`
