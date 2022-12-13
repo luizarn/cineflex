@@ -7,11 +7,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-export default function SeatsCreen(){
+export default function SeatsCreen({clicked, setClicked}){
 
 const {idSessao} = useParams()
 const [sessionSeat, setSessionSeat] = useState(undefined)
-const [clicked, setClicked] = useState([]);
+
 // const [ids, setIds] = useState("")
 
 
@@ -33,7 +33,7 @@ if (sessionSeat === undefined) {
         <Logo/>
         <Container>
                 <p>Selecione o(s) asentos(os)</p>
-                <SeatsContainer>
+                <SeatsContainer >
         {sessionSeat.seats.map ((s) => ( <Seats key={s.id} number={s.name} status={s.isAvailable} clicked={clicked} setClicked={setClicked}/>))}
                 </SeatsContainer>
             
@@ -51,6 +51,7 @@ if (sessionSeat === undefined) {
         </Container>
 
             <InformationsClient
+
             clicked={clicked}
             />
 

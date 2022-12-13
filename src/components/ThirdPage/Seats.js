@@ -25,13 +25,13 @@ console.log(newArray)}
     return(
      <>
         {status? (
-        <NumberSeat  
+        <NumberSeat  data-test="seat"
         color={color}
         onClick={() => handeleSeat(number)}> 
            {number} 
         </NumberSeat> 
         ) : (
-        <NumberSeat  
+        <NumberSeat  data-test="seat"
         color="#FBE192"
         onClick={() =>  alert("Esse assento não está disponível")}> 
             {number} 
