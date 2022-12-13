@@ -16,7 +16,7 @@ useEffect(() => {
     const promise = axios.get(URL)
     promise.then(res => setMovies(res.data))     
 
-    promise.catch(err => console.log(err.response.data)) 
+    promise.catch(err => console.log(err.response.data, "erro")) 
 }, [])
 
 if (movies === undefined) {
@@ -93,4 +93,8 @@ display:flex;
 flex-direction: column;
 justify-content:center;
 align-items:center;
+img{
+    width: 200px;
+    height: 200px;
+}
 `

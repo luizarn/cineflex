@@ -31,7 +31,8 @@ const [dateMovie, setDateMovie] = useState("")
         <Route path="/sucesso" element={<SucessScreen 
         clientName={clientName} clientCpf={clientCpf} clicked={clicked} 
         nameMovie={nameMovie} timeMovie={timeMovie} dateMovie={dateMovie}
-        setNameMovie={setNameMovie} setTimeMovie={setTimeMovie} setDateMovie={setDateMovie}/>}
+        setNameMovie={setNameMovie} setTimeMovie={setTimeMovie} setDateMovie={setDateMovie}
+        setClicked={setClicked} setClientCpf={setClientCpf} setClientName={setClientName}/>}
         />
       </Routes>
     </BrowserRouter>

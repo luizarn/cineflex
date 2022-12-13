@@ -1,8 +1,7 @@
 import Logo from "../Logo";
 import styled from 'styled-components';
-
 import Footer from "../Footer";
-import Carregando from "../../images/carregando.jpg"
+import Carregando from "../../images/carregando.jpg";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -130,4 +129,8 @@ display:flex;
 flex-direction: column;
 justify-content:center;
 align-items:center;
+img{
+    width: 200px;
+    height: 200px;
+}
 `

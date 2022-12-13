@@ -44,7 +44,7 @@ turnIdentifications()
         <>
         <Logo/>
         <Container>
-                <p>Selecione o(s) asentos(os)</p>
+                <p>Selecione o(s) assentos(os)</p>
                 <SeatsContainer >
         {sessionSeat.seats.map ((s) => ( <Seats key={s.id} number={s.name} status={s.isAvailable} clicked={clicked} setClicked={setClicked}/>))}
                 </SeatsContainer>
@@ -159,4 +159,8 @@ display:flex;
 flex-direction: column;
 justify-content:center;
 align-items:center;
+img{
+    width: 200px;
+    height: 200px;
+}
 `

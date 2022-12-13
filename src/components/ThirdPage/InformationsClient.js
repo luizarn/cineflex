@@ -10,13 +10,12 @@ const navigate = useNavigate()
 
 function addInfClient(e){
 e.preventDefault()
-const informations = {ids: clicked, name:clientName, cpf:clientCpf}
+ 
+const informations = { ids:clicked, name:clientName, cpf:clientCpf}
 const url_post = "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many"
 const promise = axios.post(url_post, informations)
 
-promise.then(res => {
-navigate("/sucesso", {state: {clientName, clientCpf, clicked}})
-})
+promise.then(navigate("/sucesso"))
 promise.catch(err => console.log(err.response.data))
 
 }
