@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link} from "react-router-dom";
+import Carregando from "../../images/carregando.jpg"
 
 export default function MainScreen() {
 
@@ -19,7 +20,12 @@ useEffect(() => {
 }, [])
 
 if (movies === undefined) {
-    return <div>Carregando...</div>
+    return (
+        <Loading>
+        <img src={Carregando} alt="carregando"/>
+        <div>Carregando...</div>
+        </Loading>
+    )
   }
 
 
@@ -81,4 +87,10 @@ img{
     width: 129px;
 height: 193px;
 }
+`
+const Loading = styled.div`
+display:flex;
+flex-direction: column;
+justify-content:center;
+align-items:center;
 `

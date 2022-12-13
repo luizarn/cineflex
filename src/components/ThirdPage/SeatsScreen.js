@@ -5,14 +5,14 @@ import Logo from "../Logo";
 import InformationsClient from "./InformationsClient";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import Carregando from "../../images/carregando.jpg"
 
-export default function SeatsCreen({clicked, setClicked}){
+
+export default function SeatsCreen({clicked, setClicked, clientCpf, clientName, setClientCpf, setClientName, setNameMovie, setTimeMovie, setDateMovie}){
 
 const {idSessao} = useParams()
 const [sessionSeat, setSessionSeat] = useState(undefined)
-
-// const [ids, setIds] = useState("")
 
 
 useEffect(() => {
@@ -24,9 +24,21 @@ useEffect(() => {
 }, [])
 
 if (sessionSeat === undefined) {
-    return <div>Carregando...</div>
+    return (
+        <Loading>
+        <img src={Carregando} alt="carregando"/>
+        <div>Carregando...</div>
+        </Loading>
+    )
   }
 
+function turnIdentifications(){
+    setNameMovie(sessionSeat.movie.title)
+    setDateMovie(sessionSeat.day.date)
+    setTimeMovie(sessionSeat.name)
+}
+
+turnIdentifications()
 
     return(
         <>
@@ -51,8 +63,15 @@ if (sessionSeat === undefined) {
         </Container>
 
             <InformationsClient
-
+        title={sessionSeat.movie.title}
+        day={sessionSeat.day.weekday}
+        time={sessionSeat.name}
+        setClientCpf={setClientCpf}
+        setClientName={setClientName}
+        clientName={clientName}
+        clientCpf={clientCpf}
             clicked={clicked}
+            setClicked={setClicked}
             />
 
             
@@ -134,4 +153,10 @@ h1{
     letter-spacing: -0.013em;
     color: #4E5A65;
 }
+`
+const Loading = styled.div`
+display:flex;
+flex-direction: column;
+justify-content:center;
+align-items:center;
 `

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export default function Footer({image, title, day, time}) {
     return (
-        <StyleFooter>
+        <StyleFooter data-test="footer">
             <span>
                 <img src={image} alt={title} />
             </span>

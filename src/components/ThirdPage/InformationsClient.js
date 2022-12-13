@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+
 import styled from 'styled-components';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -10,15 +10,18 @@ const navigate = useNavigate()
 
 function addInfClient(e){
 e.preventDefault()
-const picture = {ids: clicked, name:clientName, cpf:clientCpf}
+const informations = {ids: clicked, name:clientName, cpf:clientCpf}
 const url_post = "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many"
-const promise = axios.post(url_post, picture)
+const promise = axios.post(url_post, informations)
 
 promise.then(res => {
-navigate("/sucesso")
-console.log(res.data)
+navigate("/sucesso", {state: {clientName, clientCpf, clicked}})
 })
+promise.catch(err => console.log(err.response.data))
+
 }
+
+
 
     return(
         <>
@@ -26,6 +29,7 @@ console.log(res.data)
         <ContainerClient>
             <Title forHtml="name">Nome do comprador:</Title>
             <input 
+             data-test="client-name"
             id="name"
             type="text"
             placeholder="Digite seu nome..."
@@ -38,6 +42,7 @@ console.log(res.data)
         <ContainerClient>
             <Title forHtml="cpf">CPF do comprador:</Title>
             <input 
+            data-test="client-cpf"
             placeholder="Digite seu CPF..."
             id="cpf"
             type="text"
@@ -48,7 +53,7 @@ console.log(res.data)
             required
             />
         </ContainerClient>
-        <ButtonChoice type="submit">
+        <ButtonChoice data-test="book-seat-btn" type="submit">
                 Reservar assento(s)
             </ButtonChoice>
         </form>

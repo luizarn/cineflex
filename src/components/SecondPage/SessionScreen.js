@@ -2,7 +2,7 @@ import Logo from "../Logo";
 import styled from 'styled-components';
 
 import Footer from "../Footer";
-
+import Carregando from "../../images/carregando.jpg"
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -21,7 +21,12 @@ const [chosenMovie, setChosenMovie] = useState(undefined)
     }, [])
 
     if (chosenMovie === undefined) {
-        return <div>Carregando...</div>
+        return (
+            <Loading>
+            <img src={Carregando} alt="carregando"/>
+            <div>Carregando...</div>
+            </Loading>
+        )
       }
     
 
@@ -41,8 +46,8 @@ const [chosenMovie, setChosenMovie] = useState(undefined)
            <p>{m.weekday} - {m.date}</p>
            <TimeContainer>
             {m.showtimes.map((time)=> ( 
-                  <Link to={`/assentos/${time.id}`} key={time.id}>
- <StyleTime data-test="showtime" key={time.id}> {time.name} </StyleTime>
+                  <Link to={`/assentos/${time.id}`} key={time.name}>
+ <StyleTime data-test="showtime"> {time.name} </StyleTime>
  </Link>
 
             ))}
@@ -119,4 +124,10 @@ const TimeContainer = styled.div`
 width: 375px;
 display: flex;
 flex-wrap: wrap;
+`
+const Loading = styled.div`
+display:flex;
+flex-direction: column;
+justify-content:center;
+align-items:center;
 `

@@ -10,9 +10,12 @@ import { useState } from "react";
 export default function App() {
 
 
-  const [clientName, setClientName] = useState("")
+const [clientName, setClientName] = useState("")
 const [clientCpf, setClientCpf] = useState("")
 const [clicked, setClicked] = useState([]);
+const [nameMovie, setNameMovie] = useState("")
+const [timeMovie, setTimeMovie] = useState("")
+const [dateMovie, setDateMovie] = useState("")
 
   return (
     <BrowserRouter>
@@ -20,8 +23,16 @@ const [clicked, setClicked] = useState([]);
       <Routes>
         <Route path="/" element={<MainScreen/>} />
         <Route path="/sessoes/:idFilme" element={<SessionScreen/>}/>
-        <Route path="/assentos/:idSessao" element={<SeatsCreen/>} clientName={clientName} clientCpf={clientCpf} clickec={clicked} setClicked={setClicked} setClientCpf={setClientCpf} setClientName={setClientName} />
-        <Route path="/sucesso" element={<SucessScreen/>} clientName={clientName} clientCpf={clientCpf} clickec={clicked}/>
+        <Route path="/assentos/:idSessao" element={<SeatsCreen 
+        clientName={clientName} clientCpf={clientCpf} clicked={clicked} 
+        setClicked={setClicked} setClientCpf={setClientCpf} setClientName={setClientName} 
+        setNameMovie={setNameMovie} setTimeMovie={setTimeMovie} setDateMovie={setDateMovie}/>} 
+        />
+        <Route path="/sucesso" element={<SucessScreen 
+        clientName={clientName} clientCpf={clientCpf} clicked={clicked} 
+        nameMovie={nameMovie} timeMovie={timeMovie} dateMovie={dateMovie}
+        setNameMovie={setNameMovie} setTimeMovie={setTimeMovie} setDateMovie={setDateMovie}/>}
+        />
       </Routes>
     </BrowserRouter>
   )
