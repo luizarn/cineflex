@@ -2,21 +2,27 @@
 Bem-vindo ao Cineflex! Este projeto tem como objetivo criar uma aplicação para compra de ingressos de cinema online.
 
 ***Instalação***
+
 Para executar este projeto localmente, siga estas etapas:
 
 **1** Clone este repositório em sua máquina local.
+
 git clone https://github.com/luizarn/cineflex.git
 
 **2** Acesse o diretório do projeto.
+
 cd cineflex
 
 **3** Instale as dependências necessárias.
+
 npm install
 
 **4** Inicie o projeto.
+
 npm start
 
 ***Funcionalidades***
+
 Aqui estão algumas das principais funcionalidades oferecidas por este projeto:
 
 * Seleção de filmes: Os usuários podem escolher entre uma variedade de filmes disponíveis.
