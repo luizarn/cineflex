@@ -1,6 +1,10 @@
 ## Cineflex
 Bem-vindo ao Cineflex! Este projeto tem como objetivo criar uma aplicação para compra de ingressos de cinema online.
 
+<p align="center">
+  <img width="460" height="300" src="src/images/to_ReadMe/cineflex.gif">
+</p>
+
 ***Instalação***
 
 Para executar este projeto localmente, siga estas etapas:
